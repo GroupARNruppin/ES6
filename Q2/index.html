@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q2</title>
+    <script src="script.js" defer></script>
+    <style>
+        div,
+        label,
+        input,
+        button {
+            margin: 5px;
+        }
+        #duckInfo {
+            white-space: pre-line;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div>
+            <h1>Please enter Duck properties</h1>
+        </div>
+        <div>
+            <form id="duckForm">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required><br>
+
+                <label for="color">Color:</label>
+                <input type="text" id="color" name="color" required><br>
+
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" required><br>
+
+                <label for="weight">Weight:</label>
+                <input type="number" id="weight" name="weight" required><br>
+
+                <label for="image">Image URL:</label>
+                <input type="text" id="image" name="image" required><br>
+
+                <button type="button" onclick="createDuck()" id="createButton">Create Duck</button>
+                <button type="button" onclick="showDuck()" id="showButton" disabled>Show</button>
+                <button type="button" onclick="quackDuck()" id="quackButton" disabled>Quack</button>
+            </form>
+        </div>
+        <div id="duckInfo"></div>
+    </div>
+</body>
+
+</html>
