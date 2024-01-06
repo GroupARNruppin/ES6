@@ -42,7 +42,7 @@ const quackDuck = async () => {
     document.getElementById('duckInfo').innerText = duck.quack();
 
     const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    const audioElement = new Audio('Quack_Sound.m4a'); // Replace 'path/to/' with the actual path
+    const audioElement = new Audio('Quack_Sound.m4a'); 
 
     const source = audioContext.createMediaElementSource(audioElement);
     source.connect(audioContext.destination);
