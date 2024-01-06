@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q1</title>
+    <script src="script.js" defer></script>
+    <style>
+        div {
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div>
+            <h1>Please enter a number</h1>
+        </div>
+        <div id="label-and-text">
+            <label for="counterInput">Input:</label>
+            <input type="number" id="counterInput">
+        </div>
+        <div id="buttons">
+            <button id="startButton" onclick="startCounter()">Start</button>
+            <button id="incrementButton" onclick="incrementCounter()" disabled>+</button>
+            <button id="displayButton" onclick="displayCounter()" disabled>Go</button>
+        </div>
+        <div id="printNumbers">
+
+        </div>
+    </div>
+</body>
+
+</html>
