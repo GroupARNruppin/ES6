@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Create a New Duck</h1>
+
+    <form id="duckForm">
+      <label>Name: </label>
+      <input type="text" id="name" name="name" /><br /><br />
+
+      <label>Color: </label>
+      <input type="text" id="color" name="color" /><br /><br />
+
+      <label>Age: </label>
+      <input type="number" id="age" name="age" /><br /><br />
+
+      <label>Weight: </label>
+      <input type="number" id="weight" name="weight" /><br /><br />
+
+      <label>Picture URL: </label>
+      <input type="text" id="picture" name="picture" /><br /><br />
+
+      <input type="submit" id="createDuck" value="Create Duck" />
+    </form>
+    <script src="Q2.js"></script>
+
+    <button id="ShowDuck" display="none" hidden="hidden">Show</button>
+    <button id="quackBtn" display="none" hidden="hidden">Quack 🦆</button>
+
+    <div id="duckInfoContainer"></div>
+    <div id="quacksContainer"></div>
+  </body>
+</html>
