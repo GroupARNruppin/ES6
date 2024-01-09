@@ -1,0 +1,1 @@
+Please watch the script code in index.html, or watch the console.log examples ( as you ask)
