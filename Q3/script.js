@@ -50,4 +50,5 @@ document
       document.getElementById("sub").style.display = "none";
       showClocks(clocks);
     }
+    document.getElementById('clockForm').reset()
   });

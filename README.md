@@ -1,4 +1,4 @@
 # ES6
 Amit Bouton 207005323
-Ron Azar
-Noam Churi 
+Ron Azar 314779448
+Noam Churi 207652744

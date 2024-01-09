@@ -1,0 +1,31 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+  }
+  
+  #pointsContainer {
+    display: block;
+    flex-wrap: wrap;
+  }
+  
+  p {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    display: block;
+    max-width: 500px;
+  }
+  
+  .total-distance {
+    background-color: #e74c3c;
+  }
+  
+  .total-distance p {
+    background-color: transparent;
+    color: #e74c3c;
+  }
+  

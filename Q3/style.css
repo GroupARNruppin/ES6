@@ -1,0 +1,67 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .container {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 300px;
+  }
+  
+  .clock-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .select-box,
+  .time-select,
+  .submit-button {
+    margin-bottom: 10px;
+  }
+  
+  label {
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  .select-box {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+  }
+  
+  .time-select {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+  }
+  
+  .submit-button {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  .submit-button:hover {
+    background-color: #45a049;
+  }
+  
+  .clocks-container {
+    margin-top: 20px;
+  }
+  
