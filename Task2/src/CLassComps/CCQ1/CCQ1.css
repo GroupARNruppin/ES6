@@ -1,0 +1,23 @@
+.color-buttons-container {
+    display: inline-block;
+    text-align: center;
+    transition: background-color 0.3s ease-in-out;
+    padding-top: 50px;
+    height: 10vh;
+}
+
+.q1-btns {
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    
+}
+
+.q1-btns:hover {
+    background-color: #2980b9;
+}
