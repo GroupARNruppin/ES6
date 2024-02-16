@@ -1,13 +1,15 @@
 // import * as React from 'react';
-import React from 'react';
+import React, { useState } from 'react';
 
 import Box from '@mui/material/Box';
 import Stack from "@mui/material/Stack";
 import TextField from '@mui/material/TextField';
 import Button from "@mui/material/Button";
 import PersonAdd from "@mui/icons-material/PersonAdd";
-import { AdapterDateFns } from '@mui/lab';
-import { DatePicker } from '@mui/lab';
+// import { AdapterDateFns, DatePicker } from '@mui/lab';
+// import { AdapterDateFns } from '@mui/lab/AdapterDateFns';
+// import { DatePicker } from '@mui/lab/DatePicker';
+
 
 
 
@@ -46,53 +48,51 @@ const Register = ({registerUser}) => {
     }
     
   return (
-    // <Stack spacing={2} direction="column">
-    //     <h3>Inputs:</h3>
-    //     <TextField
-    //       id="outlined-basic"
-    //       label="UserName"
-    //       variant="outlined"
-    //     //   onChange={handleUserName}
-    //     />
-    //     <TextField
-    //       id="outlined-basic"
-    //       label="Password"
-    //       variant="outlined"
-    //     //   onChange={handlePassword}
-    //     />
-    //     <TextField
-    //       id="outlined-basic"
-    //       label="FirstName"
-    //       variant="outlined"
-    //     //   onChange={handleFirstName}
-    //     />
-    //     <TextField
-    //       id="outlined-basic"
-    //       label="LastName"
-    //       variant="outlined"
-    //     //   onChange={handleLastName}
-    //     />
-    //     <LocalizationProvider dateAdapter={AdapterDateFns}>
-    //         <DatePicker
-    //             label="Select Date"
-    //             value={selectedDate}
-    //             onChange={handleDateChange}
-    //             renderInput={(params) => <TextField {...params} variant="outlined" />}
-    //         />
-    //     </LocalizationProvider>
-    //     <br />
+    <Stack spacing={2} direction="column">
+        <h3>Inputs:</h3>
+        <TextField
+          id="outlined-basic"
+          label="UserName"
+          variant="outlined"
+        //   onChange={handleUserName}
+        />
+        <TextField
+          id="outlined-basic"
+          label="Password"
+          variant="outlined"
+        //   onChange={handlePassword}
+        />
+        <TextField
+          id="outlined-basic"
+          label="FirstName"
+          variant="outlined"
+        //   onChange={handleFirstName}
+        />
+        <TextField
+          id="outlined-basic"
+          label="LastName"
+          variant="outlined"
+        //   onChange={handleLastName}
+        />
+        {/* <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <DatePicker
+                label="Select Date"
+                value={selectedDate}
+                onChange={handleDateChange}
+                renderInput={(params) => <TextField {...params} variant="outlined" />}
+            />
+        </LocalizationProvider> */}
+        <br />
         
-    //     <Button
-    //       variant="contained"
-    //       endIcon={<PersonAdd />}
-    //     //   onClick={handleAddStudent}
-    //     >
-    //       Add User
-    //     </Button>
-    //   </Stack>
-      <div>
-        Test
-      </div>
+        <Button
+          variant="contained"
+          endIcon={<PersonAdd />}
+          onClick={handleRegistration}
+        >
+          Add User
+        </Button>
+      </Stack>
+
   );
 };
 

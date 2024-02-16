@@ -84,7 +84,7 @@ function App() {
   
   return (
     <div>
-      {loggedInUser ? (
+      {/* {loggedInUser ? (
         <div>
           <Profile user={loggedInUser} logoutUser={logoutUser}/>
           <EditDetails user={loggedInUser} editUser={editUser}/>
@@ -95,8 +95,10 @@ function App() {
           <Register registerUser={registerUser} />
           <Login loginUser={loginUser} /> 
         </div>
-      )}
+      )} */}
+          <Register registerUser={registerUser} />
     </div>
+    
   );
 }
 
