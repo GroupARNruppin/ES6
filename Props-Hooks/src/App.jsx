@@ -1,35 +1,104 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import EditDetails from './FC/EditDetails'
+import Login from './FC/Login'
+import Profile from './FC/Profile'
+import Register from './FC/Register'
+import SystemAdmin from './FC/SystemAdmin'
 
 function App() {
-  const [count, setCount] = useState(0)
+  // User details
+  const [user, setUser] = useState({
+    userName: "",
+    password: "",
+    name: "",
+    imageFile: null,
+    firstName: "",
+    lastName: "",
+    email: "",
+    birthDate: new Date(),
+    city: "",
+    streetName: "",
+    houseNumber: 0
+    // userName: PropTypes.string,
+    // password: PropTypes.string,
+    // name: "",
+    // imageFile: null,
+    // firstName: "",
+    // lastName: PropTypes.string,
+    // email: PropTypes.string,
+    // birthDate: new Date(),
+    // city: PropTypes.string,
+    // streetName: PropTypes.string,
+    // houseNumber: PropTypes.string
+  });
 
+  // logged and array of users
+  const [loggedInUser, setLoggedInUser] = useState(null)
+  const [users, setUsers] = useState([])
+
+  // loadUsers
+  useEffect(() => {
+    const storageUsers = JSON.parse(localStorage.getItem("users")) || []
+    setUsers(storageUsers)
+  }, [])
+
+  const updateLocalStorage = (updatedUsers) => {
+    localStorage.setItem('users', JSON.stringify(updatedUsers))
+  }
+
+  const registerUser = (newUser) => {
+    // varifications
+    const updatedUsers = [...users, newUser] // create updated users with the new user and the old users 
+    setUsers(updatedUsers)
+    updateLocalStorage(updatedUsers)
+  }
+
+  const loginUser = ({ username, password }) => {
+    const foundUser = users.find(user => user.userName == username && user.password == password)
+    if(foundUser){
+      setLoggedInUser(foundUser)
+    }
+  }
+
+  const logoutUser = () =>{
+    // log out user implement
+    setLoggedInUser(null)
+  }
+
+  const deleteUser = (email) =>{
+    const updatedUsers = users.filter(user => user.email != email)
+    setUsers(updatedUsers)
+    updateLocalStorage(updatedUsers)
+  }
+
+  const editUser = (updatedUser) =>{
+    const updatedUsers = users.map(user => 
+      user.email == updatedUser.email ? {...user, ...updatedUser} : user
+    )
+    setUsers(updatedUsers)
+    updateLocalStorage(updatedUsers)
+  }
+  
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div>
+      {loggedInUser ? (
+        <div>
+          <Profile user={loggedInUser} logoutUser={logoutUser}/>
+          <EditDetails user={loggedInUser} editUser={editUser}/>
+          <SystemAdmin users={users} deleteUser={deleteUser}/>
+        </div>
+      ) : (
+        <div>
+          <Register registerUser={registerUser} />
+          <Login loginUser={loginUser} /> 
+        </div>
+      )}
+    </div>
+  );
 }
 
-export default App
+export default App;
+
