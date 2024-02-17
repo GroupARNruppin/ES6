@@ -40,11 +40,11 @@ const SystemAdmin = ({ users, deleteUser }) => {
     const selectedIndex = selected.indexOf(id);
     let newSelected = [];
 
-    if (selectedIndex === -1) {
+    if (selectedIndex == -1) {
       newSelected = newSelected.concat(selected, id);
-    } else if (selectedIndex === 0) {
+    } else if (selectedIndex == 0) {
       newSelected = newSelected.concat(selected.slice(1));
-    } else if (selectedIndex === selected.length - 1) {
+    } else if (selectedIndex == selected.length - 1) {
       newSelected = newSelected.concat(selected.slice(0, -1));
     } else if (selectedIndex > 0) {
       newSelected = newSelected.concat(
@@ -91,7 +91,7 @@ const SystemAdmin = ({ users, deleteUser }) => {
               <TableCell padding="checkbox">
                 <Checkbox
                   indeterminate={selected.length > 0 && selected.length < users.length}
-                  checked={selected.length === users.length}
+                  checked={selected.length == users.length}
                   onChange={handleSelectAllClick}
                   inputProps={{ 'aria-label': 'select all users' }}
                 />

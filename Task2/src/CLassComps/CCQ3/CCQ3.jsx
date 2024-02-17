@@ -21,7 +21,7 @@ export default class CCQ3 extends Component {
   };
 
   render() {
-    const tableClass = this.state.width === "50%" ? "table-half-width" : "table-full-width";
+    const tableClass = this.state.width == "50%" ? "table-half-width" : "table-full-width";
 
     return (
       <div>

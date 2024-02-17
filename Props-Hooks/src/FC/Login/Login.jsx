@@ -3,46 +3,59 @@ import Stack from "@mui/material/Stack";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const Login = ({ loginUser }) => {
+    // State for credentials
     const [credentials, setCredentials] = useState({
         username: "",
         password: "",
     })
-
-    const handleUserName = (event)=>{
+    // Navigation
+    const navigate = useNavigate();
+    
+    const handleUserName = (event) => {
         setCredentials((prevLogin) => ({
             ...prevLogin,
             username: event.target.value
-          }));
+        }));
     }
-    const handlePassword = (event)=>{
+    const handlePassword = (event) => {
         setCredentials((prevLogin) => ({
             ...prevLogin,
             password: event.target.value
-          }));
+        }));
     }
 
-    const handleLogin = () =>{
-        if(loginUser(credentials) || (credentials.username == 'admin' && credentials.password == 'ad12343211ad')){
+    const handleLogin = () => {
+        if (loginUser(credentials) || (credentials.username == 'admin' && credentials.password == 'ad12343211ad')) {
             Swal.fire({
                 position: "center",
                 icon: "success",
                 title: `Welcome back!`,
                 showConfirmButton: false,
                 timer: 1500
-              });
+            });
+            setTimeout(() => {
+                if(credentials.username == 'admin' && credentials.password == 'ad12343211ad'){
+                    console.info(credentials)
+                    navigate('/system-admin');
+                } else {
+                    console.info(credentials)
+                    navigate('/profile');
+                }
+            }, 1000);
         }
-        else{
+        else {
             Swal.fire({
                 position: "center",
                 icon: "warning",
                 title: `Oops! Username/Password wrong!`,
-              });
+            });
         }
     }
 
-    
+
     return (
         <Stack spacing={2} direction="column">
             <h2>Login</h2>

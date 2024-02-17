@@ -123,7 +123,7 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login loginUser={loginUser}/>} />
           <Route path="/register" element={<Register registerUser={registerUser}/>} />
-          <Route path="/profile" element={<Profile user={loggedInUser} logoutUser={logoutUser}/>} />
+          <Route path="/profile" element={<Profile user={loggedInUser} logoutUser={logoutUser} />} />
           <Route path="/edit-details" element={<EditDetails user={loggedInUser} editUser={editUser}/>} />
           <Route path="/system-admin" element={<SystemAdmin users={users} deleteUser={deleteUser}/>} />
         </Routes>

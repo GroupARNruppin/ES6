@@ -12,11 +12,14 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 
 const Register = ({ registerUser }) => {
   // State for image preview
   const [imagePreview, setImagePreview] = useState(null);
+  // Navigation
+  const navigate = useNavigate();
 
   // State for user information and form errors
   const [user, setUser] = useState({
@@ -67,14 +70,14 @@ const Register = ({ registerUser }) => {
       const value = user[field.key];
 
       if (field.pattern) {
-        errors[field.key] = value === "" || !new RegExp(field.pattern).test(value);
+        errors[field.key] = value == "" || !new RegExp(field.pattern).test(value);
       } else {
-        errors[field.key] = value === "";
+        errors[field.key] = value == "";
       }
     });
 
     errors.confirmPassword = user.confirmPassword !== user.password;
-    errors.date = user.birthDate === "";
+    errors.date = user.birthDate == "";
 
     setFormErrors(errors);
 
@@ -87,6 +90,7 @@ const Register = ({ registerUser }) => {
     if (validateForm()) {
       // Call the provided registerUser function with user data
       registerUser(user);
+      navigate('/login');
     } else {
       Swal.fire({
         position: "center",
@@ -117,7 +121,7 @@ const Register = ({ registerUser }) => {
     const file = event.target.files[0];
 
     if (file) {
-      if (file.type === 'image/png' || file.type === 'image/jpeg') {
+      if (file.type == 'image/png' || file.type == 'image/jpeg') {
         const reader = new FileReader();
 
         reader.onloadend = () => {
@@ -147,7 +151,7 @@ const Register = ({ registerUser }) => {
     let age = today.getFullYear() - birthDate.getFullYear();
     const monthDiff = today.getMonth() - birthDate.getMonth();
 
-    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+    if (monthDiff < 0 || (monthDiff == 0 && today.getDate() < birthDate.getDate())) {
       age--;
     }
 
@@ -181,7 +185,7 @@ const Register = ({ registerUser }) => {
           // Adding error and helperText based on validation patterns and formErrors state
           error={field.error || (field.pattern && !new RegExp(field.pattern).test(user[field.stateKey]))}
           helperText={
-            user[field.stateKey] === ""
+            user[field.stateKey] == ""
               ? `${field.label} is required!`
               : field.error
                 ? field.helperText
@@ -205,8 +209,8 @@ const Register = ({ registerUser }) => {
           onChange={handleDateChange}
           renderInput={(params) => <TextField {...params} variant="outlined" />}
           required
-          error={user.date === ""}
-          helperText={user.date === "" ? 'Date is required!' : ''}
+          error={user.date == ""}
+          helperText={user.date == "" ? 'Date is required!' : ''}
           shouldDisableDate={(date) => {
             const userAge = calculateAge(date);
             return userAge < 18 || userAge > 120;
@@ -230,7 +234,7 @@ const Register = ({ registerUser }) => {
 
       {/* Select fiend for city */}
       <Box sx={{ minWidth: 120 }}>
-        <FormControl fullWidth error={user.city === ""} required>
+        <FormControl fullWidth error={user.city == ""} required>
           <InputLabel id="demo-simple-select-label">City</InputLabel>
           <Select
             labelId="demo-simple-select-label"
@@ -242,11 +246,12 @@ const Register = ({ registerUser }) => {
             <MenuItem value={"Haifa"}>Haifa</MenuItem>
             <MenuItem value={"Jerusalem"}>Jerusalem</MenuItem>
           </Select>
-          {user.city === "" ? "City is required!" : ""}
+          {user.city == "" ? "City is required!" : ""}
         </FormControl>
       </Box>
 
       {/* Street and house number */}
+      {/* Need to check why it doesn't enter the values */}
       {[
         { label: "Street", stateKey: "streetName", pattern: "[A-Za-zא-ת]+" },
         { label: "House number", stateKey: "houseNumber", pattern: "^\\d+$" },
@@ -261,7 +266,7 @@ const Register = ({ registerUser }) => {
           // Adding error and helperText based on validation patterns and formErrors state
           error={!new RegExp(field.pattern).test(user[field.stateKey])}
           helperText={
-            user[field.stateKey] === ""
+            user[field.stateKey] == ""
               ? `${field.label} is required!`
               : !new RegExp(field.pattern).test(user[field.stateKey])
                 ? `Invalid ${field.label}!`

@@ -11,13 +11,13 @@ class Point {
     pointsContainer.appendChild(paragraph);
   };
   Equals = function (p) {
-    return p.x === this.x && p.y === this.y;
+    return p.x == this.x && p.y == this.y;
   };
 }
 
 function TwoPointsEqualsByVars(points, x, y) {
   for (let i = 0; i < points.length; i++) {
-    if (points[i].x === x && points[i].y === y) {
+    if (points[i].x == x && points[i].y == y) {
       return true;
     }
   }
