@@ -14,7 +14,6 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 
-
 const Register = ({ registerUser }) => {
   // State for image preview
   const [imagePreview, setImagePreview] = useState(null);
@@ -90,7 +89,7 @@ const Register = ({ registerUser }) => {
     if (validateForm()) {
       // Call the provided registerUser function with user data
       registerUser(user);
-      navigate('/login');
+      navigate('/'); //lll
     } else {
       Swal.fire({
         position: "center",
@@ -139,11 +138,6 @@ const Register = ({ registerUser }) => {
     }
   };
 
-  // Function to handle saving image data (for demonstration purposes)
-  const handleSave = () => {
-    localStorage.setItem('imageData', imagePreview);
-    console.log('Image saved!');
-  };
   // Function to calculate age based on birthdate
   const calculateAge = (birthdate) => {
     const today = new Date();
@@ -163,6 +157,10 @@ const Register = ({ registerUser }) => {
     const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return pattern.test(email);
   };
+
+  const handleBackBtn = () => {
+    navigate('/') //lll
+  }
 
   return (
     <Stack spacing={2} direction="column">
@@ -281,23 +279,23 @@ const Register = ({ registerUser }) => {
         <br />
         {imagePreview && <img src={imagePreview} alt="Preview" style={{ maxWidth: '100%', maxHeight: '200px' }} />}
         <br />
-        {/* No need this button */}
-        <Button variant="contained" onClick={handleSave} disabled={!user.imageFile}>
-          Save Image
-        </Button>
       </div>
 
       <br />
 
       {/* Button for user registration that send the data to App.jsx */}
-      <Button
-        variant="contained"
-        endIcon={<PersonAdd />}
-        onClick={handleRegistration}
-      >
-        Add User
-      </Button>
-
+      <Box className="button-container">
+        <Button
+          variant="contained"
+          endIcon={<PersonAdd />}
+          onClick={handleRegistration}
+        >
+          Add User
+        </Button>
+        <Button variant="contained" color="success" onClick={handleBackBtn}>
+          Back
+        </Button>
+      </Box>
     </Stack>
   );
 };

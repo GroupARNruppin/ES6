@@ -32,7 +32,7 @@ const EditDetails = ({ user, editUser }) => {
 
     useEffect(() => {
         if (!user) {
-            navigate('/login');
+            navigate('/'); //lll
         }
         const storedImagePreview = updatedUser.imageFile;
         if (storedImagePreview) {
@@ -69,11 +69,6 @@ const EditDetails = ({ user, editUser }) => {
         return age;
     };
 
-    // Save image
-    const handleSave = () => {
-        localStorage.setItem('imageData', imagePreview);
-        console.log('Image saved!');
-    };
     // Adding image
     const handleFileChange = (event) => {
         const file = event.target.files[0];
@@ -85,7 +80,7 @@ const EditDetails = ({ user, editUser }) => {
                 reader.onloadend = () => {
                     setUpdatedUser((prevUser) => ({
                         ...prevUser,
-                        imageFile: file,
+                        imageFile: reader.result,
                     }));
                     setImagePreview(reader.result);
                 };
@@ -206,10 +201,6 @@ const EditDetails = ({ user, editUser }) => {
                 <br />
                 {imagePreview && <img src={imagePreview} alt="Preview" style={{ maxWidth: '100%', maxHeight: '200px' }} />}
                 <br />
-                {/* No need this button */}
-                <Button variant="contained" onClick={handleSave} disabled={!updatedUser.imageFile}>
-                    Save Image
-                </Button>
             </div>
 
             <Box className="button-container">

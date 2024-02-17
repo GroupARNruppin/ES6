@@ -4,6 +4,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
+import Box from '@mui/material/Box';
 
 const Login = ({ loginUser }) => {
     // State for credentials
@@ -13,7 +14,7 @@ const Login = ({ loginUser }) => {
     })
     // Navigation
     const navigate = useNavigate();
-    
+
     const handleUserName = (event) => {
         setCredentials((prevLogin) => ({
             ...prevLogin,
@@ -27,6 +28,9 @@ const Login = ({ loginUser }) => {
         }));
     }
 
+    const handleRegister = () => {
+        navigate('/register')
+    }
     const handleLogin = () => {
         if (loginUser(credentials) || (credentials.username == 'admin' && credentials.password == 'ad12343211ad')) {
             Swal.fire({
@@ -37,11 +41,10 @@ const Login = ({ loginUser }) => {
                 timer: 1500
             });
             setTimeout(() => {
-                if(credentials.username == 'admin' && credentials.password == 'ad12343211ad'){
-                    console.info(credentials)
+                if (credentials.username == 'admin' && credentials.password == 'ad12343211ad') {
+                    localStorage.setItem('admin', JSON.stringify(credentials))
                     navigate('/system-admin');
                 } else {
-                    console.info(credentials)
                     navigate('/profile');
                 }
             }, 1000);
@@ -73,10 +76,14 @@ const Login = ({ loginUser }) => {
                 onChange={handlePassword}
                 required
             />
-
-            <Button variant="contained" color="success" onClick={handleLogin}>
-                Login!
-            </Button>
+            <Box className="button-container">
+                <Button variant="contained" color="success" onClick={handleLogin}>
+                    Login!
+                </Button>
+                <Button variant="contained" color="primary" className='register-button' onClick={handleRegister}>
+                    Register
+                </Button>
+            </Box>
         </Stack>
     );
 };

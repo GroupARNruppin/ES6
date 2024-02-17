@@ -6,7 +6,6 @@ import Button from '@mui/material/Button';
 import Swal from 'sweetalert2';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
-
 // Components
 import EditDetails from './FC/EditDetails/EditDetails'
 import Login from './FC/Login/Login'
@@ -28,32 +27,23 @@ function App() {
     city: "",
     streetName: "",
     houseNumber: 0
-    // userName: PropTypes.string,
-    // password: PropTypes.string,
-    // imageFile: null,
-    // firstName: "",
-    // lastName: PropTypes.string,
-    // email: PropTypes.string,
-    // birthDate: new Date(),
-    // city: PropTypes.string,
-    // streetName: PropTypes.string,
-    // houseNumber: PropTypes.string
   });
 
-  // logged and array of users
+  // Logged user and array of users
   const [loggedInUser, setLoggedInUser] = useState(null)
-  const [users, setUsers] = useState([])
-
+  const [users, setUsers] = useState(JSON.parse(localStorage.getItem("users"))) //[]
   // loadUsers
   useEffect(() => {
     const storageUsers = JSON.parse(localStorage.getItem("users")) || []
     setUsers(storageUsers)
   }, [])
 
+  // Update local storage
   const updateLocalStorage = (updatedUsers) => {
     localStorage.setItem('users', JSON.stringify(updatedUsers))
   }
 
+  // Register user
   const registerUser = (newUser) => {
     Swal.fire({
       position: "center",
@@ -69,6 +59,7 @@ function App() {
     updateLocalStorage(updatedUsers)
   }
 
+  // Log in user
   const loginUser = ({ username, password }) => {
     const foundUser = users.find(user => user.userName == username && user.password == password)
     if(foundUser){
@@ -78,32 +69,34 @@ function App() {
     return false;
   }
 
+  // Log out user
   const logoutUser = () =>{
-    // log out user implement
     setLoggedInUser(null)
   }
 
+  // Delete user
   const deleteUser = (email) =>{
     const updatedUsers = users.filter(user => user.email != email)
     setUsers(updatedUsers)
     updateLocalStorage(updatedUsers)
   }
 
+  // Edit user
   const editUser = (updatedUser) =>{
+    setLoggedInUser(updatedUser)
     const updatedUsers = users.map(user => 
       user.email == updatedUser.email ? {...user, ...updatedUser} : user
     )
     setUsers(updatedUsers)
     updateLocalStorage(updatedUsers)
   }
-  
   return (
     <Router>
       <div>
         <nav>
           <ul>
             <li>
-              <Link to="/login">Login</Link>
+              <Link to="/">Login</Link>
             </li>
             <li>
               <Link to="/register">Register</Link>
@@ -121,11 +114,11 @@ function App() {
         </nav>
 
         <Routes>
-          <Route path="/login" element={<Login loginUser={loginUser}/>} />
+          <Route path="/" element={<Login loginUser={loginUser}/>} /> 
           <Route path="/register" element={<Register registerUser={registerUser}/>} />
           <Route path="/profile" element={<Profile user={loggedInUser} logoutUser={logoutUser} />} />
           <Route path="/edit-details" element={<EditDetails user={loggedInUser} editUser={editUser}/>} />
-          <Route path="/system-admin" element={<SystemAdmin users={users} deleteUser={deleteUser}/>} />
+          <Route path="/system-admin" element={<SystemAdmin users={users} deleteUser={deleteUser} editUser={editUser}/>} />
         </Routes>
       </div>
     </Router>

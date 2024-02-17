@@ -4,7 +4,6 @@ import Stack from "@mui/material/Stack";
 import Typography from '@mui/material/Typography';
 import Button from "@mui/material/Button";
 import { useNavigate } from 'react-router-dom';
-import './Profile.css';
 
 const Profile = ({ user, logoutUser }) => {
   // Navigation
@@ -12,7 +11,7 @@ const Profile = ({ user, logoutUser }) => {
 
   useEffect(() => {
     if (!user) {
-      navigate('/login');
+      navigate('/'); //lll
     }
   }, [user, navigate]);
 
@@ -38,7 +37,8 @@ const Profile = ({ user, logoutUser }) => {
       <Stack spacing={2} direction="column" className="user-details">
         <Typography variant="body1">Username: {user.userName}</Typography>
         <Typography variant="body1">Email: {user.email}</Typography>
-        <Typography variant="body1">Birth Date: {user.birthDate.slice(0, 10)}</Typography>
+        {/* .slice(0, 10) */}
+        <Typography variant="body1">Birth Date: {user.birthDate}</Typography> 
         <Typography variant="body1">City: {user.city}</Typography>
         <Typography variant="body1">Street Name: {user.streetName}</Typography>
         <Typography variant="body1">House Number: {user.houseNumber}</Typography>
@@ -49,10 +49,10 @@ const Profile = ({ user, logoutUser }) => {
         <Button
           variant="contained"
           color="primary"
-          className="logout-button"
-          onClick={logoutUser}
+          className="edit-button"
+          onClick={navigateEditPage}
         >
-          Logout
+          Edit
         </Button>
         <a href="https://izra.co.il/home" target="_blank" >
           <Button
@@ -66,10 +66,10 @@ const Profile = ({ user, logoutUser }) => {
         <Button
           variant="contained"
           color="primary"
-          className="edit-button"
-          onClick={navigateEditPage}
+          className="logout-button"
+          onClick={logoutUser}
         >
-          Edit
+          Logout
         </Button>
       </Box>
     </Box >
