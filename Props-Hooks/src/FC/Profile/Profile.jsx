@@ -23,11 +23,17 @@ const Profile = ({ user, logoutUser }) => {
   if (!user) {
     return null;
   }
-
+  console.log(user)
 
   return (
     <Box className="profile-container">
       <Typography variant="h2">Welcome {user.firstName} {user.lastName}</Typography>
+      {/* Img  */}
+      <div>
+        <br />
+        {user.imageFile && <img src={user.imageFile} alt="Preview" style={{ maxWidth: '100%', maxHeight: '200px' }} />}
+        <br />
+      </div>
 
       <Stack spacing={2} direction="column" className="user-details">
         <Typography variant="body1">Username: {user.userName}</Typography>

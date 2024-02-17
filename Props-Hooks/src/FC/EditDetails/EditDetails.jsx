@@ -34,7 +34,7 @@ const EditDetails = ({ user, editUser }) => {
         if (!user) {
             navigate('/login');
         }
-        const storedImagePreview = localStorage.getItem('imageData');
+        const storedImagePreview = updatedUser.imageFile;
         if (storedImagePreview) {
           setImagePreview(storedImagePreview);
         }
@@ -51,6 +51,9 @@ const EditDetails = ({ user, editUser }) => {
             showConfirmButton: false,
             timer: 1500
         });
+        setTimeout(() => {
+            navigate('/profile');
+        }, 1000);
     };
 
     const calculateAge = (birthdate) => {
@@ -94,10 +97,14 @@ const EditDetails = ({ user, editUser }) => {
         }
     };
 
+    // Navigate back to profile
+    const handleBackToProfile = ()=>{
+        navigate('/profile');
+    }
+
     if (!user) {
         return null;
     }
-    console.info(updatedUser)
     return (
         <Stack spacing={2} direction="column">
             <h2>Update User</h2>
@@ -193,7 +200,7 @@ const EditDetails = ({ user, editUser }) => {
                 />
             ))}
 
-            {/* Imge upload  */}
+            {/* Img  */}
             <div>
                 <input type="file" onChange={handleFileChange} />
                 <br />
@@ -205,11 +212,15 @@ const EditDetails = ({ user, editUser }) => {
                 </Button>
             </div>
 
-
+            <Box className="button-container">
             {/* Button to update user details */}
             <Button variant="contained" color="success" onClick={handleUpdateUser}>
                 Update User
             </Button>
+            <Button variant="contained" color="primary" onClick={handleBackToProfile}>
+                Back
+            </Button>
+            </Box>
         </Stack>
     );
 };

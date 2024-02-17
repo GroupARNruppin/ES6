@@ -127,7 +127,7 @@ const Register = ({ registerUser }) => {
         reader.onloadend = () => {
           setUser((prevUser) => ({
             ...prevUser,
-            imageFile: file,
+            imageFile: reader.result,
           }));
           setImagePreview(reader.result);
         };
